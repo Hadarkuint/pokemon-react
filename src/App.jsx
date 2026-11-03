@@ -1,5 +1,5 @@
 import "./App.css";
-import Card from "./Card.jsx";
+import PokeCards from "./PokeCards.jsx";
 
 const pokemons = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
@@ -24,6 +24,19 @@ const pokemons = [
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
 ];
 
+const pokemonTypeColors = {
+  Grass: "#7AC74C",
+  Fire: "#EE8130",
+  Water: "#6390F0",
+  Electric: "#F7D02C",
+  Psychic: "#F95587",
+  Normal: "#A8A77A",
+  Ghost: "#735797",
+  Dragon: "#6F35FC",
+  Fighting: "#C22E28",
+  Rock: "#B6A136",
+};
+
 // Sprite image URL pattern:
 // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
@@ -34,18 +47,26 @@ function App() {
       <p>what would you want to build in pokemon-react ?</p>
 
       {pokemons.map((pokemon) => (
-        <Card>
-          <div key={pokemon.id}>
-            <h2>{pokemon.name}</h2>
-            <p>Type: {pokemon.type}</p>
-            <p>HP: {pokemon.hp}</p>
-            <p>Attack: {pokemon.attack}</p>
+        <PokeCards
+          key={pokemon.id}
+          name={pokemon.name}
+          image={
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-              alt={pokemon.id}
+              alt={pokemon.name}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
+          }
+        >
+          <div style={{ fontSize: 12, lineHeight: 1.2 }}>
+            <p style={{ margin: 0, color: pokemonTypeColors[pokemon.type] }}>
+              Type: {pokemon.type}
+            </p>
+            <p style={{ margin: 0 }}>
+              HP: {pokemon.hp} · Attack: {pokemon.attack}
+            </p>
           </div>
-        </Card>
+        </PokeCards>
       ))}
     </div>
   );
