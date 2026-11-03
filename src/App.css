@@ -1,3 +1,7 @@
+html {
+  overflow-y: scroll;
+}
+
 .base {
   width: 170px;
   position: relative;
@@ -22,20 +26,20 @@
 }
 
 .pokemon-card:hover {
-  transform: translateY(-4px);
   box-shadow:
     0 0 14px 4px color-mix(in srgb, var(--type-color) 45%, transparent),
     0 42px 44px color-mix(in srgb, var(--type-color) 15%, transparent) !important;
 }
 
 .pokemon-layout {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  position: relative;
   width: 100%;
 }
 
 .type-selector {
+  position: absolute;
+  top: 24px;
+  left: -136px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -54,24 +58,24 @@
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: filter 180ms ease, transform 180ms ease, border-color 180ms ease;
+  transition: filter 180ms ease, border-color 180ms ease;
 }
 
 .type-selector button:hover,
 .type-selector button.active {
   filter: saturate(1.2) brightness(0.96);
-  transform: translateX(3px);
   border-color: var(--button-type-color);
 }
 
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(4, 240px);
-  justify-content: center;
+  justify-content: start;
   gap: 24px;
   width: calc(100% - 48px);
-  margin: 0 24px 32px 0;
+  margin: 0 auto 32px;
   padding: 24px;
+  min-height: 1346px;
   box-sizing: border-box;
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -79,36 +83,46 @@
 }
 
 @media (max-width: 1100px) {
+  .pokemon-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .type-selector {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc(100% - 48px);
+    flex-basis: auto;
+    padding-top: 0;
+    margin-bottom: 16px;
+  }
+
   .pokemon-grid {
     grid-template-columns: repeat(3, 240px);
+    min-height: 1874px;
   }
 }
 
 @media (max-width: 820px) {
   .pokemon-grid {
     grid-template-columns: repeat(2, 240px);
+    min-height: 2666px;
   }
 }
 
 @media (max-width: 560px) {
-  .pokemon-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .type-selector {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
     width: calc(100% - 24px);
-    flex-basis: auto;
-    padding-top: 0;
   }
 
   .pokemon-grid {
     grid-template-columns: 240px;
     width: calc(100% - 24px);
     padding: 16px;
+    min-height: 5290px;
   }
 }
 
