@@ -40,6 +40,7 @@ const pokemonTypeColors = {
 
 // Sprite image URL pattern:
 // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+// https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/0001.png
 
 function App() {
   const [activeType, setActiveType] = useState(null);
@@ -86,9 +87,16 @@ function App() {
               }
               image={
                 <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                  src={`https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${String(pokemon.id).padStart(4, '0')}.png`}
                   alt={pokemon.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{
+                    width: '80%',
+                    height: '80%',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
                 />
               }
             />
