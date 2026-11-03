@@ -26,6 +26,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
 
   return (
     <div
+      className="pokemon-card"
       style={{
         position: 'relative',
         width: 240,
@@ -37,11 +38,15 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
         borderRadius: '50%',
         backgroundColor: 'white',
         boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
+        '--type-color': ballColor,
         cursor: onClick ? 'pointer' : 'default',
+        transition:
+          'background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease',
       }}
       onClick={onClick}
     >
       <div
+        className="type-color"
         aria-hidden="true"
         style={{
           position: 'absolute',
@@ -97,7 +102,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           strokeWidth="3"
         />
         <path
-          d="M 114 218 A 100 100 0 0 1 14 114"
+          d="M 105 218 A 100 100 0 0 1 14 114"
           id={hpBarPathId}
           pathLength="100"
           fill="none"
@@ -106,7 +111,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           strokeLinecap="butt"
         />
         <path
-          d="M 114 218 A 100 100 0 0 1 14 114"
+          d="M 105 218 A 100 100 0 0 1 14 114"
           pathLength="100"
           fill="none"
           stroke="#6390F0"
@@ -115,7 +120,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           strokeDasharray={`${hpPercent} 100`}
         />
         <path
-          d="M 114 218 A 100 100 0 0 0 214 114"
+          d="M 123 218 A 100 100 0 0 0 214 114"
           id={attackBarPathId}
           pathLength="100"
           fill="none"
@@ -124,7 +129,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           strokeLinecap="butt"
         />
         <path
-          d="M 114 218 A 100 100 0 0 0 214 114"
+          d="M 123 218 A 100 100 0 0 0 214 114"
           pathLength="100"
           fill="none"
           stroke="#EE8130"
@@ -178,31 +183,35 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
       >
         <defs>
           <path id={labelArcId} d="M 54 136 A 60 60 0 0 0 174 136" />
-          <path id={hpLabelPathId} d="M 14 114 A 100 100 0 0 0 114 218" />
+          <path id={hpLabelPathId} d="M 14 114 A 100 100 0 0 0 105 218" />
         </defs>
-        <text fill="#171717" fontSize="11" fontWeight="700">
+        <text className="stat-label hp-label" fontSize="11" fontWeight="700">
           <textPath
             href={`#${labelArcId}`}
             startOffset="35%"
             textAnchor="middle"
           >
-            hp
+            HP
           </textPath>
         </text>
-        <text fill="#171717" fontSize="11" fontWeight="700">
+        <text
+          className="stat-label attack-label"
+          fontSize="11"
+          fontWeight="700"
+        >
           <textPath
             href={`#${labelArcId}`}
             startOffset="65%"
             textAnchor="middle"
           >
-            AtK
+            Attack
           </textPath>
         </text>
         <text fill="#171717" fontSize="11" fontWeight="700">
           <textPath
             href={`#${hpLabelPathId}`}
             startOffset={`${100 - hpPercent / 2}%`}
-            dy="0"
+            dy="5"
             textAnchor="middle"
           >
             {hp}
@@ -212,6 +221,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           <textPath
             href={`#${attackBarPathId}`}
             startOffset={`${attackPercent / 2}%`}
+            dy="5"
             textAnchor="middle"
           >
             {attack}
