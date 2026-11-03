@@ -92,44 +92,44 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           x1="114"
           y1="204"
           x2="114"
-          y2="220"
+          y2="224"
           stroke="#171717"
           strokeWidth="3"
         />
         <path
-          d="M 114 214 A 100 100 0 0 1 14 114"
+          d="M 114 218 A 100 100 0 0 1 14 114"
           id={hpBarPathId}
           pathLength="100"
           fill="none"
           stroke="#d1d5db"
-          strokeWidth="10"
-          strokeLinecap="round"
+          strokeWidth="16"
+          strokeLinecap="butt"
         />
         <path
-          d="M 114 214 A 100 100 0 0 1 14 114"
+          d="M 114 218 A 100 100 0 0 1 14 114"
           pathLength="100"
           fill="none"
           stroke="#6390F0"
-          strokeWidth="10"
-          strokeLinecap="round"
+          strokeWidth="16"
+          strokeLinecap="butt"
           strokeDasharray={`${hpPercent} 100`}
         />
         <path
-          d="M 114 214 A 100 100 0 0 0 214 114"
+          d="M 114 218 A 100 100 0 0 0 214 114"
           id={attackBarPathId}
           pathLength="100"
           fill="none"
           stroke="#d1d5db"
-          strokeWidth="10"
-          strokeLinecap="round"
+          strokeWidth="16"
+          strokeLinecap="butt"
         />
         <path
-          d="M 114 214 A 100 100 0 0 0 214 114"
+          d="M 114 218 A 100 100 0 0 0 214 114"
           pathLength="100"
           fill="none"
           stroke="#EE8130"
-          strokeWidth="10"
-          strokeLinecap="round"
+          strokeWidth="16"
+          strokeLinecap="butt"
           strokeDasharray={`${attackPercent} 100`}
         />
       </svg>
@@ -177,13 +177,13 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
         }}
       >
         <defs>
-          <path id={labelArcId} d="M 42 114 A 72 72 0 0 0 186 114" />
-          <path id={hpLabelPathId} d="M 14 114 A 100 100 0 0 0 114 214" />
+          <path id={labelArcId} d="M 54 136 A 60 60 0 0 0 174 136" />
+          <path id={hpLabelPathId} d="M 14 114 A 100 100 0 0 0 114 218" />
         </defs>
         <text fill="#171717" fontSize="11" fontWeight="700">
           <textPath
             href={`#${labelArcId}`}
-            startOffset="25%"
+            startOffset="35%"
             textAnchor="middle"
           >
             hp
@@ -192,7 +192,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
         <text fill="#171717" fontSize="11" fontWeight="700">
           <textPath
             href={`#${labelArcId}`}
-            startOffset="75%"
+            startOffset="65%"
             textAnchor="middle"
           >
             AtK
