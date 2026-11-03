@@ -56,6 +56,9 @@ function App() {
           <PokeCards
             key={pokemon.id}
             name={pokemon.name}
+            color={pokemonTypeColors[pokemon.type]}
+            hp={pokemon.hp}
+            attack={pokemon.attack}
             onClick={() =>
               setActiveType((currentType) =>
                 currentType === pokemon.type ? null : pokemon.type,
@@ -68,16 +71,7 @@ function App() {
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
             }
-          >
-            <div style={{ fontSize: 12, lineHeight: 1.2 }}>
-              <p
-                style={{ margin: 0, color: pokemonTypeColors[pokemon.type] }}
-              ></p>
-              <p style={{ margin: 0 }}>
-                HP: {pokemon.hp} · Attack: {pokemon.attack}
-              </p>
-            </div>
-          </PokeCards>
+          />
         ))}
       </div>
     </div>

@@ -12,9 +12,17 @@ const findChildColor = (children) => {
   }
 };
 
-const PokeCards = ({ children, color, image, name, onClick }) => {
+const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
   const ballColor = color || findChildColor(children) || '#ef4444';
   const nameArcId = useId();
+  const statsArcId = useId();
+  const maxStat = 160;
+  const hpPercent = Math.min(hp / maxStat, 1) * 100;
+  const attackPercent = Math.min(attack / maxStat, 1) * 100;
+  const labelArcId = useId();
+  const hpLabelPathId = useId();
+  const hpBarPathId = useId();
+  const attackBarPathId = useId();
 
   return (
     <div
@@ -54,13 +62,76 @@ const PokeCards = ({ children, color, image, name, onClick }) => {
         }}
       >
         <defs>
-          <path id={nameArcId} d="M 30 114 A 84 84 0 0 1 198 114" />
+          <path id={nameArcId} d="M 30 104 A 84 84 0 0 1 198 104" />
         </defs>
-        <text fill="#171717" fontSize="22" fontWeight="700" textAnchor="middle">
-          <textPath href={`#${nameArcId}`} startOffset="50%">
+        <text fill="#171717" fontSize="22" fontWeight="700">
+          <textPath
+            href={`#${nameArcId}`}
+            startOffset="50%"
+            textAnchor="middle"
+          >
             {name}
           </textPath>
         </text>
+      </svg>
+      <svg
+        viewBox="0 0 228 228"
+        aria-label={`HP ${hp}, Attack ${attack}`}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+        }}
+      >
+        <defs>
+          <path id={statsArcId} d="M 30 124 A 84 84 0 0 0 198 124" />
+        </defs>
+        <line
+          x1="114"
+          y1="204"
+          x2="114"
+          y2="220"
+          stroke="#171717"
+          strokeWidth="3"
+        />
+        <path
+          d="M 114 214 A 100 100 0 0 1 14 114"
+          id={hpBarPathId}
+          pathLength="100"
+          fill="none"
+          stroke="#d1d5db"
+          strokeWidth="10"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 114 214 A 100 100 0 0 1 14 114"
+          pathLength="100"
+          fill="none"
+          stroke="#6390F0"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray={`${hpPercent} 100`}
+        />
+        <path
+          d="M 114 214 A 100 100 0 0 0 214 114"
+          id={attackBarPathId}
+          pathLength="100"
+          fill="none"
+          stroke="#d1d5db"
+          strokeWidth="10"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 114 214 A 100 100 0 0 0 214 114"
+          pathLength="100"
+          fill="none"
+          stroke="#EE8130"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray={`${attackPercent} 100`}
+        />
       </svg>
       <div
         aria-hidden="true"
@@ -79,8 +150,8 @@ const PokeCards = ({ children, color, image, name, onClick }) => {
           position: 'absolute',
           top: '50%',
           left: '50%',
-          width: 104,
-          height: 104,
+          width: 180,
+          height: 180,
           boxSizing: 'border-box',
           transform: 'translate(-50%, -50%)',
           border: '6px solid #171717',
@@ -93,6 +164,60 @@ const PokeCards = ({ children, color, image, name, onClick }) => {
       >
         {image}
       </div>
+      <svg
+        viewBox="0 0 228 228"
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      >
+        <defs>
+          <path id={labelArcId} d="M 42 114 A 72 72 0 0 0 186 114" />
+          <path id={hpLabelPathId} d="M 14 114 A 100 100 0 0 0 114 214" />
+        </defs>
+        <text fill="#171717" fontSize="11" fontWeight="700">
+          <textPath
+            href={`#${labelArcId}`}
+            startOffset="25%"
+            textAnchor="middle"
+          >
+            hp
+          </textPath>
+        </text>
+        <text fill="#171717" fontSize="11" fontWeight="700">
+          <textPath
+            href={`#${labelArcId}`}
+            startOffset="75%"
+            textAnchor="middle"
+          >
+            AtK
+          </textPath>
+        </text>
+        <text fill="#171717" fontSize="11" fontWeight="700">
+          <textPath
+            href={`#${hpLabelPathId}`}
+            startOffset={`${100 - hpPercent / 2}%`}
+            dy="12"
+            textAnchor="middle"
+          >
+            {hp}
+          </textPath>
+        </text>
+        <text fill="#171717" fontSize="11" fontWeight="700">
+          <textPath
+            href={`#${attackBarPathId}`}
+            startOffset={`${attackPercent / 2}%`}
+            textAnchor="middle"
+          >
+            {attack}
+          </textPath>
+        </text>
+      </svg>
       <div
         style={{
           position: 'absolute',
