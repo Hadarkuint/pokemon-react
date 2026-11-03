@@ -1,4 +1,4 @@
-import { Children, isValidElement, useId } from "react";
+import { Children, isValidElement, useId } from 'react';
 
 const findChildColor = (children) => {
   for (const child of Children.toArray(children)) {
@@ -12,30 +12,32 @@ const findChildColor = (children) => {
   }
 };
 
-const PokeCards = ({ children, color, image, name }) => {
-  const ballColor = color || findChildColor(children) || "#ef4444";
+const PokeCards = ({ children, color, image, name, onClick }) => {
+  const ballColor = color || findChildColor(children) || '#ef4444';
   const nameArcId = useId();
 
   return (
     <div
       style={{
-        position: "relative",
+        position: 'relative',
         width: 240,
         height: 240,
         flexShrink: 0,
-        boxSizing: "border-box",
-        overflow: "hidden",
-        border: "6px solid #171717",
-        borderRadius: "50%",
-        backgroundColor: "white",
-        boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        border: '6px solid #171717',
+        borderRadius: '50%',
+        backgroundColor: 'white',
+        boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
+        cursor: onClick ? 'pointer' : 'default',
       }}
+      onClick={onClick}
     >
       <div
         aria-hidden="true"
         style={{
-          position: "absolute",
-          inset: "0 0 50%",
+          position: 'absolute',
+          inset: '0 0 50%',
           backgroundColor: ballColor,
         }}
       />
@@ -44,11 +46,11 @@ const PokeCards = ({ children, color, image, name }) => {
         role="img"
         aria-label={name}
         style={{
-          position: "absolute",
+          position: 'absolute',
           inset: 0,
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
         }}
       >
         <defs>
@@ -63,49 +65,49 @@ const PokeCards = ({ children, color, image, name }) => {
       <div
         aria-hidden="true"
         style={{
-          position: "absolute",
-          top: "50%",
+          position: 'absolute',
+          top: '50%',
           left: 0,
           right: 0,
           height: 12,
-          transform: "translateY(-50%)",
-          backgroundColor: "#171717",
+          transform: 'translateY(-50%)',
+          backgroundColor: '#171717',
         }}
       />
       <div
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
           width: 104,
           height: 104,
-          boxSizing: "border-box",
-          transform: "translate(-50%, -50%)",
-          border: "6px solid #171717",
-          borderRadius: "50%",
-          backgroundColor: "white",
-          overflow: "hidden",
-          display: "grid",
-          placeItems: "center",
+          boxSizing: 'border-box',
+          transform: 'translate(-50%, -50%)',
+          border: '6px solid #171717',
+          borderRadius: '50%',
+          backgroundColor: 'silver',
+          overflow: 'hidden',
+          display: 'grid',
+          placeItems: 'center',
         }}
       >
         {image}
       </div>
       <div
         style={{
-          position: "absolute",
-          top: "calc(50% + 52px)",
+          position: 'absolute',
+          top: 'calc(50% + 52px)',
           left: 0,
           right: 0,
           bottom: 0,
-          padding: "2px 20px 8px",
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          color: "#171717",
+          padding: '2px 20px 8px',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          color: '#171717',
         }}
       >
         {children}
