@@ -111,7 +111,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           fill="none"
           stroke="#6390F0"
           strokeWidth="16"
-          strokeLinecap="butt"
+          strokeLinecap="round"
           strokeDasharray={`${hpPercent} 100`}
         />
         <path
@@ -129,7 +129,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           fill="none"
           stroke="#EE8130"
           strokeWidth="16"
-          strokeLinecap="butt"
+          strokeLinecap="round"
           strokeDasharray={`${attackPercent} 100`}
         />
       </svg>
@@ -202,7 +202,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           <textPath
             href={`#${hpLabelPathId}`}
             startOffset={`${100 - hpPercent / 2}%`}
-            dy="12"
+            dy="0"
             textAnchor="middle"
           >
             {hp}
