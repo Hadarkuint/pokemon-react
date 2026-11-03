@@ -34,7 +34,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
         flexShrink: 0,
         boxSizing: 'border-box',
         overflow: 'hidden',
-        border: '6px solid #171717',
+        border: '3px solid #171717',
         borderRadius: '50%',
         backgroundColor: 'white',
         boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
@@ -69,7 +69,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
         <defs>
           <path id={nameArcId} d="M 30 104 A 84 84 0 0 1 198 104" />
         </defs>
-        <text fill="#171717" fontSize="22" fontWeight="700">
+        <text fill="#171717" fontSize="22" fontWeight="500">
           <textPath
             href={`#${nameArcId}`}
             startOffset="50%"
@@ -99,7 +99,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           x2="114"
           y2="224"
           stroke="#171717"
-          strokeWidth="3"
+          strokeWidth="2"
         />
         <path
           d="M 105 218 A 100 100 0 0 1 14 114"
@@ -159,7 +159,7 @@ const PokeCards = ({ attack, children, color, hp, image, name, onClick }) => {
           height: 180,
           boxSizing: 'border-box',
           transform: 'translate(-50%, -50%)',
-          border: '6px solid #171717',
+          border: '3px solid #171717',
           borderRadius: '50%',
           backgroundColor: 'silver',
           overflow: 'hidden',
