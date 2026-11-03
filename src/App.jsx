@@ -59,9 +59,9 @@ function App() {
           }
         >
           <div style={{ fontSize: 12, lineHeight: 1.2 }}>
-            <p style={{ margin: 0, color: pokemonTypeColors[pokemon.type] }}>
-              Type: {pokemon.type}
-            </p>
+            <p
+              style={{ margin: 0, color: pokemonTypeColors[pokemon.type] }}
+            ></p>
             <p style={{ margin: 0 }}>
               HP: {pokemon.hp} · Attack: {pokemon.attack}
             </p>
