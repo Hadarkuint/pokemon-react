@@ -1,5 +1,5 @@
 import "./App.css";
-import "./Card.jsx";
+import Card from "./Card.jsx";
 
 const pokemons = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
@@ -33,16 +33,20 @@ function App() {
       <h1>Pokemon</h1>
       <p>what would you want to build in pokemon-react ?</p>
 
-      <Card>
-        {pokemons.map((pokemon) => (
+      {pokemons.map((pokemon) => (
+        <Card>
           <div key={pokemon.id}>
             <h2>{pokemon.name}</h2>
             <p>Type: {pokemon.type}</p>
             <p>HP: {pokemon.hp}</p>
             <p>Attack: {pokemon.attack}</p>
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+              alt={pokemon.id}
+            />
           </div>
-        ))}
-      </Card>
+        </Card>
+      ))}
     </div>
   );
 }
