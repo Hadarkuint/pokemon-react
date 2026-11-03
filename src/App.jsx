@@ -46,33 +46,54 @@ function App() {
   const visiblePokemons = activeType
     ? pokemons.filter((pokemon) => pokemon.type === activeType)
     : pokemons;
+  const pokemonTypes = Object.keys(pokemonTypeColors);
 
   return (
     <div>
       <h1>Pokemon</h1>
 
-      <div className="pokemon-grid">
-        {visiblePokemons.map((pokemon) => (
-          <PokeCards
-            key={pokemon.id}
-            name={pokemon.name}
-            color={pokemonTypeColors[pokemon.type]}
-            hp={pokemon.hp}
-            attack={pokemon.attack}
-            onClick={() =>
-              setActiveType((currentType) =>
-                currentType === pokemon.type ? null : pokemon.type,
-              )
-            }
-            image={
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                alt={pokemon.name}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            }
-          />
-        ))}
+      <div className="pokemon-layout">
+        <aside className="type-selector" aria-label="Filter by Pokémon type">
+          {pokemonTypes.map((type) => (
+            <button
+              key={type}
+              type="button"
+              className={activeType === type ? 'active' : ''}
+              style={{ '--button-type-color': pokemonTypeColors[type] }}
+              onClick={() =>
+                setActiveType((currentType) =>
+                  currentType === type ? null : type,
+                )
+              }
+            >
+              {type}
+            </button>
+          ))}
+        </aside>
+
+        <div className="pokemon-grid">
+          {visiblePokemons.map((pokemon) => (
+            <PokeCards
+              key={pokemon.id}
+              name={pokemon.name}
+              color={pokemonTypeColors[pokemon.type]}
+              hp={pokemon.hp}
+              attack={pokemon.attack}
+              onClick={() =>
+                setActiveType((currentType) =>
+                  currentType === pokemon.type ? null : pokemon.type,
+                )
+              }
+              image={
+                <img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                  alt={pokemon.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              }
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
